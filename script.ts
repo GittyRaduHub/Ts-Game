@@ -9,7 +9,9 @@ const countElement = document.getElementById("count") as HTMLInputElement;
 const background = document.getElementById("gameCanvas") as HTMLInputElement;
 const newGame = document.getElementById("new_game") as HTMLDivElement;
 const changeElem = document.getElementById("change") as HTMLInputElement;
+const score_elem = document.getElementById("score") as HTMLInputElement;
 
+const default_score_elem = score_elem.style.display;
 const changeDefaultDisplay = changeElem.style.display;
 const default_start_btn = startBtn.style.display;
 const default_text_lost = text_lost.style.display;
@@ -18,6 +20,7 @@ const collectDefaultDisplay = collectElem.style.display;
 const avoidDefaultDisplay = avoidElem.style.display;
 const newGameDefault = newGame.style.display;
 
+score_elem.style.display = "none";
 newGame.style.display = "none";
 text_lost.style.display = "none";
 text_victory.style.display = "none";
@@ -186,6 +189,8 @@ const victory = function () {
   newGame.style.display = newGameDefault;
   newGame.style.background = "white";
   countElement.innerHTML = `It only took you ${time} seconds!`;
+  score_elem.style.display = default_score_elem;
+  score_elem.innerHTML = `Score: ${score} points`;
   clearInterval(counterIntervalId);
 };
 

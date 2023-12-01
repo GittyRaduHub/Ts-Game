@@ -40,6 +40,7 @@ body {
 }
 
 h1 {
+  text-align: center;
   margin-top: 20px;
   padding: 5px;
   color: aliceblue;
@@ -171,7 +172,17 @@ input {
     text-align: center;
   }
 
-  .start_btn,
+  .start_btn {
+    color: black;
+    width: 200px;
+    height: 80px;
+    font-size: large;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
   #new_game {
     color: black;
     width: 200px;
@@ -180,7 +191,7 @@ input {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, 0%);
+    transform: translate(-50%, 150%);
   }
 
   #collect,
@@ -198,7 +209,17 @@ input {
     text-align: center;
   }
 
-  .start_btn,
+  .start_btn {
+    color: black;
+    width: 250px;
+    height: 90px;
+    font-size: x-large;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
   #new_game {
     color: black;
     width: 250px;
@@ -207,7 +228,7 @@ input {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, 0%);
+    transform: translate(-50%, 150%);
   }
 
   #collect,

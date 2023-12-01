@@ -7,6 +7,8 @@ var countElement = document.getElementById("count");
 var background = document.getElementById("gameCanvas");
 var newGame = document.getElementById("new_game");
 var changeElem = document.getElementById("change");
+var score_elem = document.getElementById("score");
+var default_score_elem = score_elem.style.display;
 var changeDefaultDisplay = changeElem.style.display;
 var default_start_btn = startBtn.style.display;
 var default_text_lost = text_lost.style.display;
@@ -14,6 +16,7 @@ var default_text_victory = text_victory.style.display;
 var collectDefaultDisplay = collectElem.style.display;
 var avoidDefaultDisplay = avoidElem.style.display;
 var newGameDefault = newGame.style.display;
+score_elem.style.display = "none";
 newGame.style.display = "none";
 text_lost.style.display = "none";
 text_victory.style.display = "none";
@@ -154,6 +157,8 @@ var victory = function () {
     newGame.style.display = newGameDefault;
     newGame.style.background = "white";
     countElement.innerHTML = "It only took you ".concat(time, " seconds!");
+    score_elem.style.display = default_score_elem;
+    score_elem.innerHTML = "Score: ".concat(score, " points");
     clearInterval(counterIntervalId);
 };
 var randomHeight = function () {
