@@ -31,7 +31,7 @@ changeElem.style.display = "none";
 let score: number = 0;
 const startTime: number = 0;
 var time = startTime * 60;
-var gameMode: number = 0; //gamemode 0 = not playing!
+var gameMode: number = 0; //gamemode 0 = nu se intampla nimic!
 let counterIntervalId: null | ReturnType<typeof setTimeout> = null;
 
 //Interfata pentru forme

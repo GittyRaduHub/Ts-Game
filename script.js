@@ -26,7 +26,7 @@ changeElem.style.display = "none";
 var score = 0;
 var startTime = 0;
 var time = startTime * 60;
-var gameMode = 0; //gamemode 0 = not playing!
+var gameMode = 0; //gamemode 0 = nu se intampla nimic!
 var counterIntervalId = null;
 //Clasa pentru elementul colectibil
 var Collectible = /** @class */ (function () {
