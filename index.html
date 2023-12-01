@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="gameCanvas">
+      <div id="timer">
+        <h1 id="count"></h1>
+      </div>
+      <div id="message_lost"><h1>😥You lost!😥</h1></div>
+      <div id="message_victory"><h1>🎉You Won!🎉</h1></div>
+      <button class="start_btn" onclick="onStartClick()">👾START👾</button>
+
+      <div id="collect" onclick="onClickCollectible()"></div>
+      <div id="avoid" onclick="onClickAvoid()"></div>
+      <div id="change" onclick="onClickChange()"></div>
+
+      <button id="new_game">🎈New Game🎈</button>
+    </div>
+
+    <script src="/script.js"></script>
+  </body>
+</html>
