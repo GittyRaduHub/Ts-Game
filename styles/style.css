@@ -173,6 +173,7 @@ input {
 
   .start_btn,
   #new_game {
+    color: black;
     width: 200px;
     height: 80px;
     font-size: large;
@@ -199,6 +200,7 @@ input {
 
   .start_btn,
   #new_game {
+    color: black;
     width: 250px;
     height: 90px;
     font-size: x-large;
