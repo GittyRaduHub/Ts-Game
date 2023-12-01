@@ -11,6 +11,7 @@ const newGame = document.getElementById("new_game") as HTMLDivElement;
 const changeElem = document.getElementById("change") as HTMLInputElement;
 const score_elem = document.getElementById("score") as HTMLInputElement;
 
+//Am salvat modul default de display al elementelor pentru a putea sa le afisez la inceputul jocului.
 const default_score_elem = score_elem.style.display;
 const changeDefaultDisplay = changeElem.style.display;
 const default_start_btn = startBtn.style.display;
@@ -20,6 +21,8 @@ const collectDefaultDisplay = collectElem.style.display;
 const avoidDefaultDisplay = avoidElem.style.display;
 const newGameDefault = newGame.style.display;
 
+//Am facut elementele invizibile pana incepe jocul
+//As fi putut sa folosesc classList.add si remove dar mi-a venit putin mai usor asa
 score_elem.style.display = "none";
 newGame.style.display = "none";
 text_lost.style.display = "none";
@@ -101,26 +104,31 @@ class Change implements Shape {
   }
 }
 
+//functia care este apelata cand este apasat elementul collect
 function onClickCollectible() {
   const myCollectible = new Collectible();
   myCollectible.onClick();
 }
 
+//functia care este apelata cand este apasat elementul avoid
 function onClickAvoid() {
   const myAvoid = new Avoid();
   myAvoid.onClick();
 }
 
+//functia care este apelata cand este apasat elementul change
 function onClickChange() {
   const myChange = new Change();
   myChange.onClick();
 }
 
+//functia care este apelata cand se apasa pe butonul de start!
 function onStartClick() {
   gameMode = 1;
   console.log(gameMode);
   startBtn.style.display = "none";
 
+  //functia care schimba starea elementului change
   function changeBackground() {
     setInterval(function () {
       if (gameMode === 1) {
@@ -132,6 +140,7 @@ function onStartClick() {
     }, 2000);
   }
 
+  //functia facuta pentru timer si afisarea timpului
   function updateCounter() {
     const minutes = Math.floor(time / 60);
     const seconds = time % 60;
@@ -140,6 +149,8 @@ function onStartClick() {
     countElement.innerHTML = `${formattedMinutes}:${formattedSeconds}`;
     time++;
   }
+
+  //funtia pentru pozitionarea aleatoare a obiectelor
   function randomElem() {
     collectElem.style.display = collectDefaultDisplay;
     avoidElem.style.display = avoidDefaultDisplay;
@@ -155,6 +166,7 @@ function onStartClick() {
     collectElem.style.left = randomWidth();
   }
 
+  //crearea intervalelor de timp si adaugarea delay-urilor
   counterIntervalId = setInterval(updateCounter, 1000);
   const randomElemTimeoutId = setTimeout(randomElem, 1000);
   changeBackground();
@@ -164,6 +176,7 @@ function onStartClick() {
   });
 }
 
+//functia care este apelata atunci cand jocul este pierdut!
 const defeat = function () {
   gameMode = 0;
   console.log(gameMode);
@@ -178,6 +191,7 @@ const defeat = function () {
   clearInterval(counterIntervalId);
 };
 
+//functia care este apelata atunci cand se castiga jocul
 const victory = function () {
   gameMode = 0;
   console.log(gameMode);
@@ -194,6 +208,7 @@ const victory = function () {
   clearInterval(counterIntervalId);
 };
 
+//functiile facute pentru a genera pozitii aleatoare
 const randomHeight = () => {
   return Math.floor(Math.random() * (window.innerHeight - 200)) + "px";
 };
