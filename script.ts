@@ -29,6 +29,7 @@ let score: number = 0;
 const startTime: number = 0;
 var time = startTime * 60;
 var gameMode: number = 0; //gamemode 0 = not playing!
+let counterIntervalId: null | ReturnType<typeof setTimeout> = null;
 
 //Interfata pentru forme
 interface Shape {
@@ -80,7 +81,7 @@ class Change implements Shape {
   constructor() {}
 
   onClick(): void {
-    if ((changeElem.style.background = "green")) {
+    if (changeElem.style.background == "green") {
       changeElem.style.display = "none";
       if (
         collectElem.style.display == "none" &&
@@ -89,7 +90,7 @@ class Change implements Shape {
       ) {
         victory();
       }
-    } else if ((changeElem.style.background = "red")) {
+    } else if (changeElem.style.background == "red") {
       defeat();
     }
   }
@@ -112,7 +113,19 @@ function onClickChange() {
 
 function onStartClick() {
   gameMode = 1;
+  console.log(gameMode);
   startBtn.style.display = "none";
+
+  function changeBackground() {
+    setInterval(function () {
+      if (gameMode === 1) {
+        changeElem.style.background = "red";
+        setTimeout(function () {
+          changeElem.style.background = "green";
+        }, 1000);
+      }
+    }, 2000);
+  }
 
   function updateCounter() {
     const minutes = Math.floor(time / 60);
@@ -136,19 +149,19 @@ function onStartClick() {
     collectElem.style.top = randomHeight();
     collectElem.style.left = randomWidth();
   }
-  setTimeout(randomElem, 1000);
 
-  var timer = setInterval(updateCounter, 1000);
+  counterIntervalId = setInterval(updateCounter, 1000);
+  const randomElemTimeoutId = setTimeout(randomElem, 1000);
+  changeBackground();
 
-  clearInterval(timer);
+  newGame.addEventListener("click", () => {
+    location.reload();
+  });
 }
-
-newGame.addEventListener("click", () => {
-  location.reload();
-});
 
 const defeat = function () {
   gameMode = 0;
+  console.log(gameMode);
   background.style.background = "red";
   collectElem.style.display = "none";
   avoidElem.style.display = "none";
@@ -156,23 +169,26 @@ const defeat = function () {
   changeElem.style.display = "none";
   newGame.style.display = newGameDefault;
   newGame.style.background = "white";
-
   countElement.innerHTML = `How does it feel to waste ${time} seconds?`;
+  clearInterval(counterIntervalId);
 };
 
 const victory = function () {
   gameMode = 0;
+  console.log(gameMode);
+  console.log(time);
   background.style.background = "green";
   text_victory.style.display = default_text_victory;
   avoidElem.style.display = "none";
   newGame.style.display = newGameDefault;
   newGame.style.background = "white";
-  countElement.innerHTML = `You won in ${time} seconds!`;
+  countElement.innerHTML = `It only took you ${time} seconds!`;
+  clearInterval(counterIntervalId);
 };
 
 const randomHeight = () => {
-  return Math.floor(Math.random() * window.innerHeight) + "px";
+  return Math.floor(Math.random() * (window.innerHeight - 200)) + "px";
 };
 const randomWidth = () => {
-  return Math.floor(Math.random() * window.innerWidth) + "px";
+  return Math.floor(Math.random() * (window.innerWidth - 200)) + "px";
 };

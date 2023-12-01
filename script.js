@@ -24,6 +24,7 @@ var score = 0;
 var startTime = 0;
 var time = startTime * 60;
 var gameMode = 0; //gamemode 0 = not playing!
+var counterIntervalId = null;
 //Clasa pentru elementul colectibil
 var Collectible = /** @class */ (function () {
     function Collectible() {
@@ -61,7 +62,7 @@ var Change = /** @class */ (function () {
         this.shape = "rectangle";
     }
     Change.prototype.onClick = function () {
-        if ((changeElem.style.background = "green")) {
+        if (changeElem.style.background == "green") {
             changeElem.style.display = "none";
             if (collectElem.style.display == "none" &&
                 changeElem.style.display == "none" &&
@@ -69,7 +70,7 @@ var Change = /** @class */ (function () {
                 victory();
             }
         }
-        else if ((changeElem.style.background = "red")) {
+        else if (changeElem.style.background == "red") {
             defeat();
         }
     };
@@ -89,7 +90,18 @@ function onClickChange() {
 }
 function onStartClick() {
     gameMode = 1;
+    console.log(gameMode);
     startBtn.style.display = "none";
+    function changeBackground() {
+        setInterval(function () {
+            if (gameMode === 1) {
+                changeElem.style.background = "red";
+                setTimeout(function () {
+                    changeElem.style.background = "green";
+                }, 1000);
+            }
+        }, 2000);
+    }
     function updateCounter() {
         var minutes = Math.floor(time / 60);
         var seconds = time % 60;
@@ -109,19 +121,16 @@ function onStartClick() {
         collectElem.style.top = randomHeight();
         collectElem.style.left = randomWidth();
     }
-    setTimeout(randomElem, 1000);
-    if (gameMode == 1) {
-        setInterval(updateCounter, 1000);
-    }
-    else if (gameMode == 0) {
-        clearInterval(setInterval(updateCounter, 1000));
-    }
+    counterIntervalId = setInterval(updateCounter, 1000);
+    var randomElemTimeoutId = setTimeout(randomElem, 1000);
+    changeBackground();
+    newGame.addEventListener("click", function () {
+        location.reload();
+    });
 }
-newGame.addEventListener("click", function () {
-    location.reload();
-});
 var defeat = function () {
     gameMode = 0;
+    console.log(gameMode);
     background.style.background = "red";
     collectElem.style.display = "none";
     avoidElem.style.display = "none";
@@ -130,19 +139,23 @@ var defeat = function () {
     newGame.style.display = newGameDefault;
     newGame.style.background = "white";
     countElement.innerHTML = "How does it feel to waste ".concat(time, " seconds?");
+    clearInterval(counterIntervalId);
 };
 var victory = function () {
     gameMode = 0;
+    console.log(gameMode);
+    console.log(time);
     background.style.background = "green";
     text_victory.style.display = default_text_victory;
     avoidElem.style.display = "none";
     newGame.style.display = newGameDefault;
     newGame.style.background = "white";
-    countElement.innerHTML = "You won in ".concat(time, " seconds!");
+    countElement.innerHTML = "It only took you ".concat(time, " seconds!");
+    clearInterval(counterIntervalId);
 };
 var randomHeight = function () {
-    return Math.floor(Math.random() * window.innerHeight) + "px";
+    return Math.floor(Math.random() * (window.innerHeight - 200)) + "px";
 };
 var randomWidth = function () {
-    return Math.floor(Math.random() * window.innerWidth) + "px";
+    return Math.floor(Math.random() * (window.innerWidth - 200)) + "px";
 };
