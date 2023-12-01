@@ -34,6 +34,7 @@ var Collectible = /** @class */ (function () {
     }
     Collectible.prototype.onClick = function () {
         collectElem.style.display = "none";
+        score++;
         if (collectElem.style.display == "none" &&
             changeElem.style.display == "none" &&
             gameMode == 1) {
@@ -64,6 +65,7 @@ var Change = /** @class */ (function () {
     Change.prototype.onClick = function () {
         if (changeElem.style.background == "green") {
             changeElem.style.display = "none";
+            score++;
             if (collectElem.style.display == "none" &&
                 changeElem.style.display == "none" &&
                 gameMode == 1) {
@@ -145,6 +147,7 @@ var victory = function () {
     gameMode = 0;
     console.log(gameMode);
     console.log(time);
+    console.log("Score ".concat(score));
     background.style.background = "green";
     text_victory.style.display = default_text_victory;
     avoidElem.style.display = "none";

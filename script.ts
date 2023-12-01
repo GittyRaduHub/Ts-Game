@@ -49,6 +49,7 @@ class Collectible implements Shape {
 
   onClick() {
     collectElem.style.display = "none";
+    score++;
     if (
       collectElem.style.display == "none" &&
       changeElem.style.display == "none" &&
@@ -83,6 +84,7 @@ class Change implements Shape {
   onClick(): void {
     if (changeElem.style.background == "green") {
       changeElem.style.display = "none";
+      score++;
       if (
         collectElem.style.display == "none" &&
         changeElem.style.display == "none" &&
@@ -177,6 +179,7 @@ const victory = function () {
   gameMode = 0;
   console.log(gameMode);
   console.log(time);
+  console.log(`Score ${score}`);
   background.style.background = "green";
   text_victory.style.display = default_text_victory;
   avoidElem.style.display = "none";

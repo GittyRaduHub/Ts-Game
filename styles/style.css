@@ -163,3 +163,55 @@ input {
   transform: translate(0%, -5%);
   box-shadow: 0 10px 16px rgba(0, 0, 0, 0.977);
 }
+
+/* Media query for phones */
+@media only screen and (max-width: 600px) {
+  h1 {
+    font-size: 300%;
+    text-align: center;
+  }
+
+  .start_btn,
+  #new_game {
+    width: 200px;
+    height: 80px;
+    font-size: large;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+  }
+
+  #collect,
+  #change,
+  #avoid {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+/* Media query for tablets */
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+  h1 {
+    font-size: 400%;
+    text-align: center;
+  }
+
+  .start_btn,
+  #new_game {
+    width: 250px;
+    height: 90px;
+    font-size: x-large;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+  }
+
+  #collect,
+  #change,
+  #avoid {
+    width: 60px;
+    height: 60px;
+  }
+}
